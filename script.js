@@ -17,6 +17,18 @@ function calcularIMC() {
     classificacao = "Obesidade";
   }
 
-  document.getElementById("resultado").innerText =
-    "Seu IMC é: " + imc + " — " + classificacao;
+ let resultado = document.getElementById("resultado");
+
+resultado.innerText = "Seu IMC é: " + imc + " — " + classificacao;
+
+if (imc < 18.5) {
+  resultado.style.color = "#f6c23e"; // amarelo
+} else if (imc < 25) {
+  resultado.style.color = "#1cc88a"; // verde
+} else if (imc < 30) {
+  resultado.style.color = "#fd7e14"; // laranja
+} else {
+  resultado.style.color = "#e74a3b"; // vermelho
+}
+
 }
