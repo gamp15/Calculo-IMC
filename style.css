@@ -166,9 +166,9 @@ button:hover {
 }
 
 /* IMC CORES */
-.imc-baixo { color: #4fc3f7; font-weight: bold; }
-.imc-normal { color: #69f0ae; font-weight: bold; }
-.imc-sobrepeso { color: #ffeb3b; font-weight: bold; }
+.imc-baixo { color: #e0f006; font-weight: bold; }
+.imc-normal { color: #00fa21; font-weight: bold; }
+.imc-sobrepeso { color: #ff9100; font-weight: bold; }
 .imc-obesidade { color: #ff5252; font-weight: bold; }
 
 .erro {
@@ -250,4 +250,61 @@ h2, p {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ===== VISUAL PRO ===== */
+
+.main-card {
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+input, select {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.card-historico {
+  border-left: 4px solid #ff80ab;
+}
+
+/* ===== ANIMAÇÕES ===== */
+
+.fade {
+  animation: fadeIn 0.35s ease;
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+select {
+  background: white !important;
+  color: #222 !important;
+}
+
+select option {
+  color: #222;
+  background: white;
 }
