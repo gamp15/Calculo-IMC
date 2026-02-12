@@ -3,56 +3,251 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #4e73df, #1cc88a);
-  height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  background: linear-gradient(270deg, #5f2c82, #9c27b0, #e040fb);
+  background-size: 600% 600%;
+  animation: gradientMove 15s ease infinite;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 0;
 }
 
-.container {
-  background: white;
+/* Fundo animado */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Frutas animadas no fundo */
+body::before {
+  content: "🍎 🍌 🍉 🍇 🍓 🍍";
+  position: fixed;
+  top: 50%;
+  left: 20%;
+  font-size: 24px;
+  opacity: 0.1;
+  pointer-events: none;
+  animation: floatUpDown 10s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: "🍏 🍒 🥝 🥭 🍑 🥥";
+  position: fixed;
+  top: 60%;
+  left: 70%;
+  font-size: 26px;
+  opacity: 0.1;
+  pointer-events: none;
+  animation: floatUpDown 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatUpDown {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-40px) rotate(10deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* CARD PRINCIPAL */
+.main-card {
+  width: 90%;
+  max-width: 420px; /* volta ao tamanho de app */
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  width: 320px;
-  text-align: center;
+  border-radius: 30px;
+
+  backdrop-filter: blur(25px);
+  background: rgba(255,255,255,0.15);
+
+  box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+  z-index: 1;
 }
 
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* TÍTULO */
 h1 {
-  margin-bottom: 20px;
-  color: #333;
+  color: #ffffff;
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 15px;
 }
 
-input {
+/* MENU */
+#menu {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+  #menu {
+    flex-direction: column;
+  }
+}
+
+/* CONTAINER DAS TELAS */
+.container-telas {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* CARDS INTERNOS (Histórico, IMC, etc) */
+.card-resultado,
+.card-historico {
+  background: rgba(255,255,255,0.15);
+  padding: 15px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.4s ease-in-out;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.4;
+  max-height: 200px; /* padroniza altura */
+  overflow-y: auto;   /* scroll interno se conteúdo maior */
+}
+
+.card-resultado p, 
+.card-historico p,
+.card-resultado span,
+.card-historico span,
+.card-resultado label,
+.card-historico label {
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
+}
+
+/* ANIMAÇÃO CARDS */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* INPUTS E BOTÕES */
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 15px;
+  border: none;
+  outline: none;
   font-size: 14px;
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  background: #4e73df;
-  color: white;
-  font-size: 16px;
+  margin-top: 12px;
+  background: linear-gradient(45deg, #ff4081, #ff80ab);
+  color: #ffffff;
+  font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  background: #2e59d9;
+  transform: scale(1.05);
 }
 
-#resultado {
-  margin-top: 15px;
+/* IMC CORES */
+.imc-baixo { color: #4fc3f7; font-weight: bold; }
+.imc-normal { color: #69f0ae; font-weight: bold; }
+.imc-sobrepeso { color: #ffeb3b; font-weight: bold; }
+.imc-obesidade { color: #ff5252; font-weight: bold; }
+
+.erro {
+  color: #ff8a80;
   font-weight: bold;
-  font-size: 16px;
+}
+
+/* COLUNA ESQUERDA */
+.area-principal {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* COLUNA DIREITA (botões) */
+.area-botoes {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+@media (max-width: 700px) {
+  .main-card {
+    flex-direction: column;
+  }
+}
+
+h2 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+p {
+  opacity: 0.85;
+}
+
+.area-botoes {
+  width: 100%;
+}
+
+.main-card {
+  background: rgba(255,255,255,0.18) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+h2, p {
+  color: white !important;
+}
+
+.fade {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.conteudo {
+  animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

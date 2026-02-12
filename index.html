@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title> Calculo IMC </title>
-</head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutri App</title>
 <link rel="stylesheet" href="style.css">
-
+</head>
 
 <body>
 
-  <div class="container">
-    <h1>Calculadora de IMC</h1>
+<div class="main-card">
 
-    <label>Peso (kg):</label>
-    <input type="number" id="peso">
-
-    <label>Altura (m):</label>
-    <input type="number" id="altura" step="0.01">
-
-    <button onclick="calcularIMC()">Calcular IMC</button>
-
-    <p id="resultado"></p>
+  <div id="conteudo">
+    <h2>Bem-vindo 👋</h2>
+    <p>Escolha uma opção abaixo</p>
   </div>
 
-  <script src="script.js"></script>
+  <nav class="menu">
+    <button data-tela="imc">IMC</button>
+    <button data-tela="agua">Água</button>
+    <button data-tela="calorias">Calorias</button>
+    <button data-tela="historico">Histórico</button>
+  </nav>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
-
-
-
 </html>
